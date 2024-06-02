@@ -13,8 +13,7 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const issue = context.issue;
-            const createdAt = new Date(issue.created_at);
+            const createdAt = new Date("${{ github.event.issue.created_at }}"");
             const now = new Date();
             const oneMinute = 60 * 1000; // milliseconds
             if (now - createdAt > oneMinute) {
@@ -30,12 +29,7 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const issue = await github.rest.issues.get({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number
-            });
-            const labels = issue.data.labels.map(label => label.name);
+            const labels = JSON.parse("${{ github.event.issue.labels }}").map(label => label.name);
             const isBugOrQuestion = labels.includes('bug') || labels.includes('question');
             core.setOutput('isBugOrQuestion', isBugOrQuestion);
 
@@ -44,7 +38,7 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const body = context.issue.body;
+            const body = "${{ github.event.issue.body }}";
             const versionRegex = /### 程序版本\s*(.+)\s*### 所使用的/;
             const versionMatch = body.match(versionRegex);
             let closeReasons = [];
