@@ -30,8 +30,8 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            console.log(github.event);
-            const labels = github.event.issue.labels;
+            # const labels = github.event.issue.labels;
+            const labels = context.payload.issue.labels.map(label => label.name);
             const isBugOrQuestion = labels.includes('bug') || labels.includes('question');
             core.setOutput('isBugOrQuestion', isBugOrQuestion);
 
