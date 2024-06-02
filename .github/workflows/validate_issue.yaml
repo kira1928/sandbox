@@ -29,7 +29,7 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const labelsJson = JSON.parse(`${{ toJSON(github.event.issue.labels) }}`).map(label => label.name);
+            const labels = JSON.parse(`${{ toJSON(github.event.issue.labels) }}`).map(label => label.name);
             const isBugOrQuestion = labels.includes('bug') || labels.includes('question');
             core.setOutput('isBugOrQuestion', isBugOrQuestion);
 
