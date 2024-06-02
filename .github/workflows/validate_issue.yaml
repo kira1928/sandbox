@@ -29,6 +29,8 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
+            const labelsJson = "${{ github.event.issue.labels }}";
+            console.log(labelsJson);
             const labels = JSON.parse("${{ github.event.issue.labels }}").map(label => label.name);
             const isBugOrQuestion = labels.includes('bug') || labels.includes('question');
             core.setOutput('isBugOrQuestion', isBugOrQuestion);
