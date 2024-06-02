@@ -30,7 +30,7 @@ jobs:
         with:
           script: |
             const labelsJson = "${{ github.event.issue.labels }}";
-            console.log("here", labelsJson);
+            console.log("here", labelsJson.length);
             // const labels = JSON.parse("${{ github.event.issue.labels }}").map(label => label.name);
             // const isBugOrQuestion = labels.includes('bug') || labels.includes('question');
             // core.setOutput('isBugOrQuestion', isBugOrQuestion);
