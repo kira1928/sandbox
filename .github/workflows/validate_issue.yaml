@@ -30,17 +30,16 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            // const labels = github.event.issue.labels;
-            const a = github.event.issue;
-            // const isBugOrQuestion = labels.includes('bug') || labels.includes('question');
-            // core.setOutput('isBugOrQuestion', isBugOrQuestion);
+            const labels = context.issue.labels;
+            const isBugOrQuestion = labels.includes('bug') || labels.includes('question');
+            core.setOutput('isBugOrQuestion', isBugOrQuestion);
 
       - name: Validate issues
         if: steps.check-label.outputs.isBugOrQuestion == 'true'
         uses: actions/github-script@v6
         with:
           script: |
-            const body = github.event.issue.body;
+            const body = context.issue.body;
             const versionRegex = /### 程序版本\s*(.+)\s*### 所使用的/;
             const versionMatch = body.match(versionRegex);
             let closeReasons = [];
