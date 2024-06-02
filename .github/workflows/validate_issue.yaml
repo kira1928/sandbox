@@ -13,7 +13,7 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const createdAt = new Date("${{ github.event.issue.created_at }}"");
+            const createdAt = new Date("${{ github.event.issue.created_at }}");
             const now = new Date();
             const oneMinute = 60 * 1000; // milliseconds
             if (now - createdAt > oneMinute) {
