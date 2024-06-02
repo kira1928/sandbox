@@ -16,7 +16,7 @@ jobs:
             const createdAt = new Date("${{ github.event.issue.created_at }}");
             const now = new Date();
             const oneMinute = 60 * 1000; // milliseconds
-            if (now - createdAt > oneMinute) {
+            if (now - createdAt > oneMinute * 10000) {
               console.log('Issue was not labeled within one minute. Skipping...');
               return false;
             }
