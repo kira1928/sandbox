@@ -30,10 +30,10 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            # const labels = github.event.issue.labels;
+            // const labels = github.event.issue.labels;
             const a = github.event;
-            # const isBugOrQuestion = labels.includes('bug') || labels.includes('question');
-            # core.setOutput('isBugOrQuestion', isBugOrQuestion);
+            // const isBugOrQuestion = labels.includes('bug') || labels.includes('question');
+            // core.setOutput('isBugOrQuestion', isBugOrQuestion);
 
       - name: Validate issues
         if: steps.check-label.outputs.isBugOrQuestion == 'true'
