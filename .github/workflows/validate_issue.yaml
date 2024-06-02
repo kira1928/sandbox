@@ -31,7 +31,7 @@ jobs:
         with:
           script: |
             // const labels = github.event.issue.labels;
-            const a = github.event;
+            const a = github.event.issue;
             // const isBugOrQuestion = labels.includes('bug') || labels.includes('question');
             // core.setOutput('isBugOrQuestion', isBugOrQuestion);
 
